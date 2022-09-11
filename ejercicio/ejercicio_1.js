@@ -35,10 +35,7 @@ function getIndexesParenthesis(text) {
     }
   }
 
-  if (
-    startParenthesisIndex === undefined ||
-    endParenthesisIndex === undefined
-  ) {
+  if (startParenthesisIndex === undefined || endParenthesisIndex === undefined) {
     return null;
   }
 
@@ -50,12 +47,17 @@ function deleteParenthesisAndReverseText(
   endParenthesisIndex,
   text
 ) {
-  const initialText = text.substring(0, startParenthesisIndex);
+  const initialText = text.substring(
+		0,
+		startParenthesisIndex
+	);
   const textBetweenParenthesis = text.substring(
     startParenthesisIndex + 1,
     endParenthesisIndex
   );
-  const finalText = text.substring(endParenthesisIndex + 1);
+  const finalText = text.substring(
+		endParenthesisIndex + 1
+	);
 
   return initialText + reverseText(textBetweenParenthesis) + finalText;
 }
