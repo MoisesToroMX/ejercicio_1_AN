@@ -1,67 +1,66 @@
 module.exports.reverseByParenthesis = function reverseByParenthesis(text) {
-  const indexes = getIndexesParenthesis(text);
+	const indexes = getIndexesParenthesis(text);
 
-  if (!indexes) {
-    return text;
-  }
+	if (!indexes) {
+		return text;
+	}
 
-  const { startParenthesisIndex, endParenthesisIndex } = indexes;
-  const newText = deleteParenthesisAndReverseText(
-    parseInt(startParenthesisIndex),
-    parseInt(endParenthesisIndex),
-    text
-  );
+	const { startParenthesisIndex, endParenthesisIndex } = indexes;
+	const newText = deleteParenthesisAndReverseText(
+		parseInt(startParenthesisIndex),
+		parseInt(endParenthesisIndex),
+		text
+	);
 
-  console.log(newText);
+	console.log(newText);
 
-  return reverseByParenthesis(newText);
+	return reverseByParenthesis(newText);
 };
 
 function getIndexesParenthesis(text) {
-  let startParenthesisIndex;
-  let endParenthesisIndex;
+	let startParenthesisIndex;
+	let endParenthesisIndex;
 
-  const characters = text.split("");
+	const characters = text.split('');
 
-  for (indexCharacter in characters) {
-    const parenthesis = characters[indexCharacter];
+	for (let indexCharacter in characters) {
+		const parenthesis = characters[indexCharacter];
 
-    if (parenthesis === "(") {
-      startParenthesisIndex = indexCharacter;
-    }
-    if (parenthesis === ")") {
-      endParenthesisIndex = indexCharacter;
-      break;
-    }
-  }
+		if (parenthesis === '(') {
+			startParenthesisIndex = indexCharacter;
+		} else if (parenthesis === ')') {
+			endParenthesisIndex = indexCharacter;
+			break;
+		}
+	}
 
-  if (startParenthesisIndex === undefined || endParenthesisIndex === undefined) {
-    return null;
-  }
+	if (startParenthesisIndex === undefined || endParenthesisIndex === undefined) {
+		return null;
+	}
 
-  return { startParenthesisIndex, endParenthesisIndex };
+	return { startParenthesisIndex, endParenthesisIndex };
 }
 
 function deleteParenthesisAndReverseText(
-  startParenthesisIndex,
-  endParenthesisIndex,
-  text
+	startParenthesisIndex,
+	endParenthesisIndex,
+	text
 ) {
-  const initialText = text.substring(
+	const initialText = text.substring(
 		0,
 		startParenthesisIndex
 	);
-  const textBetweenParenthesis = text.substring(
-    startParenthesisIndex + 1,
-    endParenthesisIndex
-  );
-  const finalText = text.substring(
+	const textBetweenParenthesis = text.substring(
+		startParenthesisIndex + 1,
+		endParenthesisIndex
+	);
+	const finalText = text.substring(
 		endParenthesisIndex + 1
 	);
 
-  return initialText + reverseText(textBetweenParenthesis) + finalText;
+	return initialText + reverseText(textBetweenParenthesis) + finalText;
 }
 
 function reverseText(text) {
-  return text.split("").reverse().join("");
+	return text.split('').reverse().join('');
 }
