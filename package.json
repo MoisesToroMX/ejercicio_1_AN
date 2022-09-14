@@ -1,7 +1,7 @@
 {
   "scripts": {
     "test": "mocha test",
-		"lint": "eslint ."
+    "lint": "eslint ."
   },
   "dependencies": {
     "chai": "^4.3.6"
